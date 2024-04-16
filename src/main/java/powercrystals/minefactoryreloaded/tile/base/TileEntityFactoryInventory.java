@@ -243,7 +243,7 @@ public abstract class TileEntityFactoryInventory extends TileEntityFactory imple
 		missed.clear();
 		for (int i = drops.size(); i-- > 0;) {
 			ItemStack dropStack = drops.get(i);
-			dropStack = UtilInventory.dropStack(this, dropStack, this.getDropDirections(), this.getDropDirection());
+			dropStack = UtilInventory.dropStack(this, dropStack, this.getDropDirections(), ForgeDirection.UNKNOWN);
 			if (dropStack != null && dropStack.stackSize > 0) {
 				missed.add(dropStack);
 			}
