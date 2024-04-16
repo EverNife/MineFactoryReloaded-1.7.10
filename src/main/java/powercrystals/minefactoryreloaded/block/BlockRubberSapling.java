@@ -53,30 +53,32 @@ public class BlockRubberSapling extends BlockSapling implements IRedNetNoConnect
 		int meta = damageDropped(world.getBlockMetadata(x, y, z));
 		world.setBlockToAir(x, y, z);
 
-		switch (meta) {
-		case 1:
-			if (MineFactoryReloadedWorldGen.generateSacredSpringRubberTree(world, rand, x, y, z))
-				return;
-			break;
-		case 2:
-			if (MineFactoryReloadedWorldGen.generateMegaRubberTree(world, rand, x, y, z, true))
-				return;
-			break;
-		case 3:
-			if (new WorldGenMassiveTree().setSloped(true).generate(world, rand, x, y, z))
-				return;
-			break;
-		default:
-		case 0:
-			BiomeGenBase b = world.getBiomeGenForCoords(x, z);
-			if (b != null && b.biomeName.toLowerCase(Locale.US).contains("mega"))
-				if (rand.nextInt(50) == 0)
-					if (MineFactoryReloadedWorldGen.generateMegaRubberTree(world, rand, x, y, z, true))
-						return;
-			if (treeGen.growTree(world, rand, x, y, z))
-				return;
-			break;
-		}
+        treeGen.growTree(world, rand, x, y, z);
+
+//        switch (meta) {
+//            case 1:
+//                if (MineFactoryReloadedWorldGen.generateSacredSpringRubberTree(world, rand, x, y, z))
+//                    return;
+//                break;
+//            case 2:
+//                if (MineFactoryReloadedWorldGen.generateMegaRubberTree(world, rand, x, y, z, true))
+//                    return;
+//                break;
+//            case 3:
+//                if (new WorldGenMassiveTree().setSloped(true).generate(world, rand, x, y, z))
+//                    return;
+//                break;
+//            default:
+//            case 0:
+//                BiomeGenBase b = world.getBiomeGenForCoords(x, z);
+//                if (b != null && b.biomeName.toLowerCase(Locale.US).contains("mega"))
+//                    if (rand.nextInt(50) == 0)
+//                        if (MineFactoryReloadedWorldGen.generateMegaRubberTree(world, rand, x, y, z, true))
+//                            return;
+//                if (treeGen.growTree(world, rand, x, y, z))
+//                    return;
+//                break;
+//        }
 		world.setBlock(x, y, z, this, meta, 4);
 	}
 
