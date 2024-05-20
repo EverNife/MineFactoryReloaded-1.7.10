@@ -121,6 +121,9 @@ public class TileEntityGrinder extends TileEntityFactoryPowered implements ITank
 	@Override
 	public boolean activateMachine()
 	{
+        if (_grindingWorld == null){
+            return false;
+        }
 		_grindingWorld.cleanReferences();
 		List<?> entities = worldObj.getEntitiesWithinAABB(EntityLivingBase.class, _areaManager.getHarvestArea().toAxisAlignedBB());
 
