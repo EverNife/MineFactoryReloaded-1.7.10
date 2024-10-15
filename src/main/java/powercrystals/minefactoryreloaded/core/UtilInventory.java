@@ -244,6 +244,12 @@ public abstract class UtilInventory
 		if (world.isRemote | stack == null || stack.stackSize == 0 || stack.getItem() == null)
 			return null;
 
+        // (0.25) Sanity check. Don't drop if the chunk is not loaded.
+        boolean isChunkLoaded = world.getChunkProvider().chunkExists(bp.x >> 4, bp.z >> 4);
+        if (!isChunkLoaded){
+            return null;
+        }
+
 		stack = stack.copy();
 		// (0.5) Try to put stack in conduits that are in valid directions
 		for (Entry<ForgeDirection, IItemDuct> pipe : findConduits(world, bp.x, bp.y, bp.z, dropdirections).entrySet())
