@@ -53,7 +53,8 @@ public class BlockRubberSapling extends BlockSapling implements IRedNetNoConnect
 		int meta = damageDropped(world.getBlockMetadata(x, y, z));
 		world.setBlockToAir(x, y, z);
 
-        treeGen.growTree(world, rand, x, y, z);
+        if (treeGen.growTree(world, rand, x, y, z))
+            return;
 
 //        switch (meta) {
 //            case 1:
